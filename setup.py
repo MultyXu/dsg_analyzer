@@ -15,11 +15,13 @@ setup(
     zip_safe=True,
     maintainer='multy',
     maintainer_email='multyxu@gmail.com',
-    description='TODO: Package description',
+    description='Contain nodes that subscribes to dsg and perform analysis on it',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'talker = dsg_analyzer.test_publisher:main',
+            'listener = dsg_analyzer.test_subscriber:main',
         ],
     },
 )
