@@ -1,0 +1,8 @@
+%YAML 1.2
+---
+launch:
+  - pyenv_node:
+      pkg: dsg_analyzer
+      exec: dsg_analyzer
+      name: dsg_analyzer_node
+      pyenv: $(env ADT4_ENV)/spark_env

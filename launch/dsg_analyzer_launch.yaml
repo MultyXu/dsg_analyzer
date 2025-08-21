@@ -1,0 +1,8 @@
+%YAML 1.2
+---
+launch:
+  - node:
+      pkg: dsg_analyzer
+      exec: dsg_analyzer
+      name: dsg_analyzer_node
+# This will not work because ros2 resolve to the default python environment without the ianvs tools from spark lab.
