@@ -1,0 +1,5 @@
+<library path="dsg_stats_panel">
+  <class type="dsg_analyzer_rviz::DsgStatsPanel" base_class_type="rviz_common::Panel">
+    <description>A panel for displaying dsg statistics</description>
+  </class>
+</library>
