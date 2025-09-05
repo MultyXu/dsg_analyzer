@@ -22,7 +22,6 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'talker = dsg_analyzer.test_publisher:main',
             'dsg_analyzer = dsg_analyzer.dsg_analyzer:main',
         ],
     },
