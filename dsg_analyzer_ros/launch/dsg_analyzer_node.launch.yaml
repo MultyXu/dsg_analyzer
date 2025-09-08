@@ -2,7 +2,7 @@
 ---
 launch:
   - pyenv_node:
-      pkg: dsg_analyzer
-      exec: dsg_analyzer
+      pkg: dsg_analyzer_ros
+      exec: dsg_analyzer_node
       name: dsg_analyzer_node
       pyenv: $(env ADT4_ENV)/spark_env
