@@ -7,7 +7,7 @@ from std_msgs.msg import String
 
 from hydra_ros import DsgSubscriber
 import spark_dsg as dsg
-from dsg_analyzer.dsg_analyzer import get_object_label_histogram
+from dsg_analyzer.dsg_analyzer import get_object_label_histogram, dsg_general_stats_string
 
 class DsgAnalyzerNode(Node):
     def __init__(self):
@@ -27,10 +27,7 @@ class DsgAnalyzerNode(Node):
     
     def print_dsg_statistics(self, time, G):
         self.msg_string = f"DSG Statistics at time {time:.2f} seconds:\n"
-        self.msg_string += f"Number of objects: {G.get_layer(dsg.DsgLayers.OBJECTS).num_nodes()}\n"
-        # self.msg_string += f"Number of places: {G.get_layer(dsg.DsgLayers.PLACES).num_nodes()}\n"
-        self.msg_string += f"Number of places: {G.get_layer(dsg.DsgLayers.MESH_PLACES).num_nodes()}\n"
-        self.msg_string += f"Number of rooms: {G.get_layer(dsg.DsgLayers.ROOMS).num_nodes()}\n"
+        self.msg_string += dsg_general_stats_string(G)
 
         all_histogram = get_object_label_histogram(G)
         self.semantic_histogram = {k: v for k, v in all_histogram.items() if v > 0}
