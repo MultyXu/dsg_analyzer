@@ -9,23 +9,6 @@ from hydra_ros import DsgSubscriber
 import spark_dsg as dsg
 from dsg_analyzer.dsg_analyzer import get_object_label_histogram
 
-# def get_object_label_histogram(G: dsg.DynamicSceneGraph):
-#     key = G.get_layer_key(dsg.DsgLayers.OBJECTS)
-#     labelspace = G.get_labelspace(key.layer, key.partition)
-
-#     histogram = {}
-#     for name in labelspace.names_to_labels:
-#         histogram[name] = 0
-
-#     for node in G.get_layer(dsg.DsgLayers.OBJECTS).nodes:
-#         label = labelspace.get_node_category(node)
-#         if label is not None:
-#             histogram[label] += 1
-#         else:
-#             raise ValueError(f"Node {node.id.str()} has no label in the labelspace.")
-
-#     return histogram
-
 class DsgAnalyzerNode(Node):
     def __init__(self):
         super().__init__('dsg_analyzer')
@@ -33,12 +16,12 @@ class DsgAnalyzerNode(Node):
         self.dsg = None
         self.dsg_lock = threading.Lock()
         self.last_dsg_time = None
-        DsgSubscriber(self, "/hamilton/hydra/backend/dsg", self.dsg_callback)
+        DsgSubscriber(self, "~/dsg_in", self.dsg_callback)
         
-        self.msg_string = ""
+        self.msg_string = "Nothing received yet."
         self.semantic_histogram = {}
         # publish data for the rviz panel
-        self.publisher_ = self.create_publisher(String, '/dsg_statistics', 10)
+        self.publisher_ = self.create_publisher(String, '~/dsg_stats_out', 10)
         timer_period = 1.0  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
     
